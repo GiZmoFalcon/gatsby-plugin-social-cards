@@ -24,7 +24,7 @@ exports.onCreateNode = ({ node, getNode, actions, graphql }, options) => {
       cover = path.join(dir, post[coverImageField]);
     }
     const filename = "social-card-" + node.id + ".jpg";
-    const output = path.join("./public", filename);
+    const output = path.join("./public/social-card-images/", filename);
 
     const author = post.author || options.defaultAuthor;
     const subtitle = author ? `by ${author}` : "";
@@ -45,7 +45,7 @@ exports.onCreateNode = ({ node, getNode, actions, graphql }, options) => {
           createNodeField({
             node,
             name: `socialcard`,
-            value: filename,
+            value: `./social-card-images/${filename}`,
           });
         } catch (err) {
           console.error("createNodeField failed");
