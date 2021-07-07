@@ -18,10 +18,10 @@ exports.onCreateNode = ({ node, getNode, actions, graphql }, options) => {
     }
 
     let cover = options.backgroundImage;
-
-    if (post.cover) {
+    const coverImageField = options.coverImageField || "coverImage";
+    if (post[coverImageField]) {
       const { dir } = getNode(node.parent);
-      cover = path.join(dir, post.cover);
+      cover = path.join(dir, post[coverImageField]);
     }
     const filename = "social-card-" + node.id + ".jpg";
     const output = path.join("./public", filename);
