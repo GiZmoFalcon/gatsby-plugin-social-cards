@@ -25,7 +25,7 @@ exports.onCreateNode = ({ node, getNode, actions, graphql }, options) => {
     }
     const filename = "social-card-" + node.id + ".jpg";
     const output = path.join("./public/social-card-images/", filename);
-
+    const outputDirectory = options.outputDirectory || "social-card-images";
     const author = post.author || options.defaultAuthor;
     const subtitle = author ? `by ${author}` : "";
 
@@ -37,7 +37,8 @@ exports.onCreateNode = ({ node, getNode, actions, graphql }, options) => {
         design: options.design,
         authorImage64,
       },
-      output
+      output,
+      outputDirectory
     )
       .then(() => {
         console.log(post.title, "generated: " + output);

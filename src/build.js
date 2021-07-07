@@ -25,10 +25,15 @@ export async function generateCard(
     authorImage64,
     design = "default", // default, card, split
   },
-  oname
+  oname,
+  out_dir
 ) {
   if (!fs.existsSync(backgroundImage)) {
     backgroundImage = defaultBackgroundImage;
+  }
+
+  if (!fs.existsSync(`./public/${out_dir}`)) {
+    fs.mkdirSync(`./public/${out_dir}`);
   }
 
   let OverlayComponent;
